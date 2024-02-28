@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class TransposicaoMatriz {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int rows, cols;
+
+        System.out.print("Digite o numero de linhas da matriz: ");
+        rows = scanner.nextInt();
+        System.out.print("Digite o numero de colunas da matriz: ");
+        cols = scanner.nextInt();
+
+        int[][] matriz = new int[rows][cols];
+
+        System.out.println("Digite os elementos da matriz:");
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print("Elemento [" + (i + 1) + "][" + (j + 1) + "]: ");
+                matriz[i][j] = scanner.nextInt();
+            }
+        }
+
+        System.out.println("Matriz Original:");
+        exibirMatriz(matriz);
+
+        int[][] matrizTransposta = transporMatriz(matriz);
+
+        System.out.println("Matriz Transposta:");
+        exibirMatriz(matrizTransposta);
+    }
+
+    private static int[][] transporMatriz(int[][] matriz) {
+        int rows = matriz.length;
+        int cols = matriz[0].length;
+
+        int[][] matrizTransposta = new int[cols][rows];
+
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+                matrizTransposta[i][j] = matriz[j][i];
+            }
+        }
+
+        return matrizTransposta;
+    }
+
+    private static void exibirMatriz(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+}
