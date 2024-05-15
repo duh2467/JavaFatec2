@@ -1,0 +1,84 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Pedido {
+    private int numero;
+    private List<String> itens;
+    private String status;
+
+    public Pedido(int numero, List<String> itens) {
+        this.numero = numero;
+        this.itens = itens;
+        this.status = "Em andamento";
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public List<String> getItens() {
+        return itens;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "numero=" + numero +
+                ", itens=" + itens +
+                ", status='" + status + '\'' +
+                '}';
+    }
+}
+
+class ListaDePedidos {
+    private List<Pedido> pedidos;
+
+    public ListaDePedidos() {
+        this.pedidos = new ArrayList<>();
+    }
+
+    public void adicionarPedido(Pedido pedido) {
+        pedidos.add(pedido);
+    }
+
+    public void removerPedido(Pedido pedido) {
+        pedidos.remove(pedido);
+    }
+
+    public void exibirPedidosEmAndamento() {
+        for (Pedido pedido : pedidos) {
+            if (pedido.getStatus().equals("Em andamento")) {
+                System.out.println(pedido);
+            }
+        }
+    }
+
+    public void marcarPedidoComoEntregue(Pedido pedido) {
+        pedido.setStatus("Entregue");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Pedido pedido1 = new Pedido(1, List.of("Hamburguer", "Batatas fritas"));
+        Pedido pedido2 = new Pedido(2, List.of("Pizza", "Refrigerante"));
+
+        ListaDePedidos listaDePedidos = new ListaDePedidos();
+        listaDePedidos.adicionarPedido(pedido1);
+        listaDePedidos.adicionarPedido(pedido2);
+
+        listaDePedidos.exibirPedidosEmAndamento();
+
+        listaDePedidos.marcarPedidoComoEntregue(pedido1);
+
+        listaDePedidos.exibirPedidosEmAndamento();
+    }
+}
