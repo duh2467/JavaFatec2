@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Tarefa {
+    private String titulo;
+    private String descricao;
+    private boolean concluida;
+
+    public Tarefa(String titulo, String descricao) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.concluida = false;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public boolean estaConcluida() {
+        return concluida;
+    }
+
+    public void marcarComoConcluida() {
+        this.concluida = true;
+    }
+
+    @Override
+    public String toString() {
+        return "Tarefa{" +
+                "titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", concluida=" + concluida +
+                '}';
+    }
+}
+
+class ListaDeTarefas {
+    private List<Tarefa> tarefas;
+
+    public ListaDeTarefas() {
+        this.tarefas = new ArrayList<>();
+    }
+
+    public void adicionarTarefa(Tarefa tarefa) {
+        tarefas.add(tarefa);
+    }
+
+    public void removerTarefa(Tarefa tarefa) {
+        tarefas.remove(tarefa);
+    }
+
+    public void exibirTarefas() {
+        for (Tarefa tarefa : tarefas) {
+            System.out.println(tarefa);
+        }
+    }
+
+    public void marcarTarefaComoConcluida(Tarefa tarefa) {
+        tarefa.marcarComoConcluida();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Tarefa tarefa1 = new Tarefa("Estudar Java", "Estudar programacao em Java");
+        Tarefa tarefa2 = new Tarefa("Fazer compras", "Ir ao supermercado");
+        
+        ListaDeTarefas listaDeTarefas = new ListaDeTarefas();
+        listaDeTarefas.adicionarTarefa(tarefa1);
+        listaDeTarefas.adicionarTarefa(tarefa2);
+
+        listaDeTarefas.exibirTarefas();
+
+        listaDeTarefas.marcarTarefaComoConcluida(tarefa1);
+
+        listaDeTarefas.exibirTarefas();
+    }
+}
