@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Livro {
+    private String titulo;
+    private String autor;
+    private int numCopiasDisponiveis;
+
+    public Livro(String titulo, String autor, int numCopiasDisponiveis) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.numCopiasDisponiveis = numCopiasDisponiveis;
+    }
+
+}
+
+class Usuario {
+    private String nome;
+
+    public Usuario(String nome) {
+        this.nome = nome;
+    }
+
+}
+
+class Aluno extends Usuario {
+    private int numEmprestimos;
+
+    public Aluno(String nome) {
+        super(nome);
+        this.numEmprestimos = 0;
+    }
+
+}
+
+class Professor extends Usuario {
+    private int numEmprestimos;
+
+    public Professor(String nome) {
+        super(nome);
+        this.numEmprestimos = 0;
+    }
+
+}
+
+class Biblioteca {
+    private List<Livro> livros;
+    private List<Usuario> usuarios;
+
+    public Biblioteca() {
+        this.livros = new ArrayList<>();
+        this.usuarios = new ArrayList<>();
+    }
+
+}
+
+public class SistemaBiblioteca {
+    public static void main(String[] args) {
+        Biblioteca biblioteca = new Biblioteca();
+        Aluno aluno = new Aluno("Bernardo");
+        Professor professor = new Professor("Leonardo");
+
+        biblioteca.adicionarLivro(new Livro("Dom Casmurro", "Machado de Assis", 5));
+        biblioteca.adicionarLivro(new Livro("O Guarani", "Jose de Alencar", 3));
+        biblioteca.adicionarUsuario(aluno);
+        biblioteca.adicionarUsuario(professor);
+
+    }
+}
